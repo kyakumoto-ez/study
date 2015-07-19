@@ -11,10 +11,6 @@ class Logic
   }
 
   private function _sort($list, $listCount, $point, $isDesc = false) {
-    if ($listCount <= $point) {
-      return $list;
-    }
-
     $result = $list;
     $value  = $list[$point];
     for ($index = $point + 1; $index < $listCount; $index++) {
@@ -33,6 +29,11 @@ class Logic
       }
     }
 
-    return $this->_sort($result, $listCount, ++$point, $isDesc);
+    if ($listCount <= $point) {
+      return $result;
+    }
+    else {
+      return $this->_sort($result, $listCount, ++$point, $isDesc);
+    }
   }
 }
